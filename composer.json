@@ -1,0 +1,21 @@
+{
+    "name": "vendor/fatura-enel",
+    "description": "leitor de fatura enel-ce",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Vendor\\FaturaEnel\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "dorgivalsilva2016",
+            "email": "dorgival.silva@ifms.edu.br"
+        }
+    ],
+    "require": {
+        "smalot/pdfparser": "^2.3",
+        "dompdf/dompdf": "^2.0",
+        "guzzlehttp/guzzle": "^7.5"
+    }
+}
