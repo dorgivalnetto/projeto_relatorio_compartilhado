@@ -83,12 +83,6 @@ $lsSelectPermissoesPorIdUser = mysqli_fetch_object($selectPermissoesPorIdUser);
                         <a class="collapse-item" href="?page=processos_inserir"><i class="fas fa-list"></i> Novo Relatório</a>
                     <? endif; ?>
 
-                    <? if ($lsSelectPermissoesPorIdUser->processos_stages == 0): echo ""; else: ?>
-                        <h6 class="collapse-header">Processos:</h6>
-                        <a class="collapse-item" href="?page=processos_stages&q=1"><span class="badge badge-secondary"><?= totalProcessosIdStatus(1) ?></span> Em Edição</a>
-                        <a class="collapse-item" href="?page=processos_stages&q=4"><span class="badge badge-danger"><?= totalProcessosIdStatus(4) ?></span> Submetidos</a>
-                        <a class="collapse-item" href="?page=processos_stages&q=5"><span class="badge badge-success"><?= totalProcessosIdStatus(5) ?></span> Avaliados</a>
-                    <? endif; ?>
                 </div>
             </div>
         </li>

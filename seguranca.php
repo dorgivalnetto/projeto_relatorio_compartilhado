@@ -22,7 +22,7 @@ $_SG['caseSensitive'] = false;     // DO YOU WANT USE case-sensitive? [ 'thiago'
 $_SG['validaSempre'] = true;       // DO YOU WANT TO VALIDATE USER AND PASSWORD EVERY PAGE LOAD?
 
 //DESABILITANDO A MENSAGEM DE WARNING DO PHP
-error_reporting(0);
+error_reporting(1);
 
 //SET TIMEZONE SYSTEM
 date_default_timezone_set('America/Fortaleza');
@@ -38,11 +38,11 @@ setlocale(LC_MONETARY, 'pt_BR');
 // error_reporting(E_ALL);
 
 /// LOCAL CONFIGURATIONS
- $_SG['servidor'] = 'localhost';    // Servidor MySQL
- $_SG['usuario'] = 'root';          // Usuário MySQL
- $_SG['senha'] = '';                // Senha MySQL
- $_SG['banco'] = 'bd_egp';            // Banco de dados MySQL
- $_SG['site_url'] = 'http://localhost:8080'; //url do site
+$_SG['servidor'] = 'db';    // Servidor MySQL
+$_SG['usuario'] = 'root';          // Usuário MySQL
+$_SG['senha'] = '123456';                // Senha MySQL
+$_SG['banco'] = 'new_test';            // Banco de dados MySQL
+$_SG['site_url'] = 'http://localhost'; //url do site
 
 
 

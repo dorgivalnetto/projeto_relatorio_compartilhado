@@ -1,9 +1,9 @@
 <?php
     /// LOCAL CONFIGURATIONS
-     $host   = "localhost"; // IP do Banco
-     $user   = "root"; // Usuário
-     $pswd   = ""; // Senha
-     $dbname = "bd_egp"; // Banco
+     $host   = $_SG['servidor']; // IP do Banco
+     $user   = $_SG['usuario']; // Usuário
+     $pswd   = $_SG['senha']; // Senha
+     $dbname = $_SG['banco']; // Banco
      $con    = null; // Conexão
 
     /////// MYSQL WEB CONFIGURATION !!!!!!!!!!!!

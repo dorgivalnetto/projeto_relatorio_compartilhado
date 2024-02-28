@@ -30,26 +30,28 @@ USE new_test;
 --
 
 CREATE TABLE IF NOT EXISTS `usuario` (
-  `id_usu` int(11) NOT NULL,
+  `id_usu` int(11) NOT NULL AUTO_INCREMENT,
   `login` tinytext NOT NULL,
   `nome` tinytext NOT NULL,
   `senha` tinytext NOT NULL,
   `fotoPeople` tinytext NOT NULL,
-  `get_id_prefeitura` int(11) NOT NULL,
+  `get_id_unid_aca` int(11) NOT NULL,
   `tipo` char(2) NOT NULL,
   `status` int(11) NOT NULL,
   `idUserRegister` int(11) NOT NULL,
   `dataRegistro` datetime NOT NULL,
+  `matricula` int NOT NULL,
   PRIMARY KEY (`id_usu`)
 ) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
 
 --
 -- Fazendo dump de dados para tabela `usuario`
 --
-SELECT * FROM `usuario`;
-INSERT INTO `usuario` (`id_usu`, `login`, `nome`, `senha`, `fotoPeople`, `get_id_prefeitura`, `tipo`, `status`, `idUserRegister`, `dataRegistro`) VALUES
-(1, 'dorgival.netto@ufca.edu.br', 'Dorgival Netto', 'MTIzNDU=', 'noPhoto.jpg', 2, '0', 1, 1, '2023-01-05 09:24:59');
-UPDATE `usuario`SET senha = 'teste123' WHERE `id_usu`=1;
+SELECT * from `usuario`;
+INSERT INTO `usuario` (`id_usu`, `login`, `nome`, `senha`, `fotoPeople`, `get_id_unid_aca`, `tipo`, `status`, `idUserRegister`, `dataRegistro`, `matricula`) VALUES
+(1, 'dorgival.netto@ufca.edu.br', 'Dorgival Netto', 'MTIzNDU2', 'noPhoto.jpg', 2, '0', 1, 1, '2023-01-05 09:24:59', 0);
+-- ALTER TABLE `usuario` ADD COLUMN `matricula`int not null;
+-- ALTER TABLE `usuario` MODIFY COLUMN `id_usu` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- Estrutura para tabela `organizacaoUFCA`
 --
@@ -118,14 +120,8 @@ INSERT INTO `coordenadores_perfil` (`id_perfil`, `nome_perfil`,`get_id_register`
 -- Estrutura para tabela `coordenadores_perfil`
 --
 
-CREATE TABLE IF NOT EXISTS `curso` (
-  `id_curso` int(11) NOT NULL,
-  `nome_curso` tinytext NOT NULL,
-  `get_id_register` int(11) NOT NULL,
-  `data_register_servidor` datetime DEFAULT NULL,
-  PRIMARY KEY (`id_curso`)
-) ENGINE=InnoDB AUTO_INCREMENT=8677 DEFAULT CHARSET=utf8mb4;
-SELECT * FROM `curso`;
+
+-- SELECT * FROM `curso`;
 CREATE TABLE IF NOT EXISTS `curso` (
   `id_curso` int NOT NULL,
   `nome_curso` tinytext NOT NULL,
@@ -279,6 +275,7 @@ CREATE TABLE IF NOT EXISTS `permissoes` (
   `formularios_almoxarifado` int(11) NOT NULL DEFAULT 0,
   `formularios_compras` int(11) NOT NULL DEFAULT 0,
   `formularios_ordens_judiciais` int(11) NOT NULL DEFAULT 0,
+  `formularios_relatorio` int(11) NOT NULL DEFAULT 0,
   `formularios_vigencia_contratos` int(11) NOT NULL DEFAULT 0,
   `formularios_registros_beneficios` int(11) NOT NULL DEFAULT 0,
   `formularios_enel` int(11) NOT NULL DEFAULT 0,
@@ -294,7 +291,9 @@ CREATE TABLE IF NOT EXISTS `permissoes` (
   `dash_ordens_judiciais` int(11) NOT NULL DEFAULT 0,
   `dash_central_de_marcacoes` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
-
+-- ALTER TABLE `permissoes` ADD COLUMN  `formularios_relatorio` int(11) NOT NULL DEFAULT 0;
+UPDATE `permissoes` SET `processos_powerbi` = 0 WHERE getIdUsu = 1;
+SELECT * FROM `permissoes` WHERE getIdUsu = 1;
 --
 -- Fazendo dump de dados para tabela `permissoes`
 --
@@ -346,8 +345,8 @@ CREATE TABLE IF NOT EXISTS `processosgerenciais` (
 -- Fazendo dump de dados para tabela `processosgerenciais`
 --
 
--- INSERT INTO `processosgerenciais` (`id_processosGerenciais`, `nome_processo`, `get_id_organizaoPrefeituras`, `imagemProcesso`, `get_id_status_processo`, `get_id_register`, `data_register_processo`) VALUES
--- (1, 'OrganizaÃ§Ã£o da folha de pagamento SESAU', 1, 'de2c19c90f3065362740e1632d9f2775.pdf', 4, 4, '2022-09-30 14:52:42');
+INSERT INTO `processosgerenciais` (`id_processosGerenciais`, `nome_processo`, `get_id_organizaoPrefeituras`, `imagemProcesso`, `get_id_status_processo`, `get_id_register`, `data_register_processo`) VALUES
+(1, 'Organizaçãoo da folha de pagamento', 1, 'de2c19c90f3065362740e1632d9f2775.pdf', 4, 1, '2022-09-30 14:52:42');
 
 -- --------------------------------------------------------
 
@@ -411,7 +410,7 @@ CREATE TABLE IF NOT EXISTS `recupera_senha` (
 --
 
 INSERT INTO `recupera_senha` (`id_recupera_senha`, `get_id_usuario`, `hash`, `data_pedido`, `data_troca`) VALUES
-(1, 7, 'c1af1e060b300f4c1f4179e20309d7fbf5a84c2e', '2023-02-15 09:28:29', NULL);
+(1, 1, 'c1af1e060b300f4c1f4179e20309d7fbf5a84c2e', '2023-02-15 09:28:29', NULL);
 
 -- --------------------------------------------------------
 
@@ -423,8 +422,8 @@ INSERT INTO `recupera_senha` (`id_recupera_senha`, `get_id_usuario`, `hash`, `da
 --
 -- Índices de tabela `egp_lotacoes`
 --
-ALTER TABLE `egp_lotacoes`
-  ADD PRIMARY KEY (`id_lotacao`), ADD KEY `get_id_register` (`get_id_register`);
+-- ALTER TABLE `egp_lotacoes`
+--   ADD PRIMARY KEY (`id_lotacao`), ADD KEY `get_id_register` (`get_id_register`);
 
 --
 -- Índices de tabela `paineis_pwbi`
@@ -465,8 +464,8 @@ ALTER TABLE `recupera_senha`
 --
 -- Índices de tabela `usuario`
 --
-ALTER TABLE `usuario`
-  ADD PRIMARY KEY (`id_usu`), ADD KEY `get_id_prefeitura` (`get_id_prefeitura`), ADD KEY `idUserRegister` (`idUserRegister`);
+-- ALTER TABLE `usuario`
+--   ADD PRIMARY KEY (`id_usu`), ADD KEY `get_id_prefeitura` (`get_id_prefeitura`), ADD KEY `idUserRegister` (`idUserRegister`);
 
 --
 -- AUTO_INCREMENT de tabelas apagadas
@@ -474,8 +473,8 @@ ALTER TABLE `usuario`
 
 
 --
-ALTER TABLE `egp_lotacoes`
-  MODIFY `id_lotacao` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=52;
+-- ALTER TABLE `egp_lotacoes`
+--   MODIFY `id_lotacao` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT de tabela `paineis_pwbi`

@@ -12,11 +12,9 @@ function totalPermissoes() {
 //LISTA AS PERMISSOES PELO ID DO USER
 function selectPermissoesPorIdUser($getIdUsu) {
     global $link;
-    $query = mysqli_query($link,"SELECT * FROM permissoes
-        WHERE (permissoes.getIdUsu = '$getIdUsu')
-        GROUP BY permissoes.getIdUsu
-        ORDER BY `permissoes`.`getIdUsu`
-        ") or die(mysqli_error($link));
+    $test = "SELECT * FROM permissoes WHERE (permissoes.getIdUsu = '$getIdUsu') ORDER BY `permissoes`.`getIdUsu`";
+    //$test = "SELECT * FROM permissoes WHERE (permissoes.getIdUsu = '$getIdUsu') GROUP BY permissoes.getIdUsu ORDER BY `permissoes`.`getIdUsu`";
+    $query = mysqli_query($link,$test) or die(mysqli_error($link));
     return $query;
 }
 
