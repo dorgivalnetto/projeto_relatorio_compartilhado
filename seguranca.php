@@ -41,7 +41,7 @@ setlocale(LC_MONETARY, 'pt_BR');
 $_SG['servidor'] = 'db';    // Servidor MySQL
 $_SG['usuario'] = 'root';          // Usuário MySQL
 $_SG['senha'] = '123456';                // Senha MySQL
-$_SG['banco'] = 'new_test';            // Banco de dados MySQL
+$_SG['banco'] = 'proex_db';            // Banco de dados MySQL
 $_SG['site_url'] = 'http://localhost'; //url do site
 
 
@@ -59,7 +59,7 @@ $_SG['paginaLogin'] = 'index.php';
 $_SG['paginaLoginOFF'] = 'index.php';
 
 /* ALIAS TO DATABASE TABLES */
-$_SG['TabUsuario'] = 'usuario';
+$_SG['TabUsuario'] = 'usuarios';
 
 // ======================================
 //   ~ PLEASE! DON'T CHANGE AFTER THIS POINT ~
@@ -97,8 +97,8 @@ function validaUsuario($login, $senha) {
 
 	// Monta uma consulta SQL (query) para procurar um usuário
 	// status 1(um) é pq está ativo
-	$sql = "SELECT `id_usu`, `nome`, `tipo`, `status` FROM `".$_SG['TabUsuario']."`
-	WHERE ".$cS." `login` = '".$nusuario."' AND ".$cS." `senha` = '".$nsenha."' AND ".$cS." `status` = '1'
+	$sql = "SELECT `usuarioID`, `nomeUsuario`, `tipoUsuario`, `statusUsuario` FROM `".$_SG['TabUsuario']."`
+	WHERE ".$cS." `loginUsuario` = '".$nusuario."' AND ".$cS." `senhaUsuario` = '".$nsenha."' AND ".$cS." `statusUsuario` = '1'
 	LIMIT 1";
 		$query = mysqli_query($_SG['link'],$sql) or die(mysqli_error());
 		$resultado = mysqli_fetch_assoc($query);
@@ -110,9 +110,9 @@ function validaUsuario($login, $senha) {
 	// O registro foi encontrado => o usuário é valido
 
 	// Definimos dois valores na sessão com os dados do usuário
-	$_SESSION['usuarioID'] = $resultado['id_usu']; // Pega o valor da coluna 'id do registro encontrado no MySQL
-	$_SESSION['usuarioNome'] = $resultado['nome']; // Pega o valor da coluna 'nome' do registro encontrado no MySQL
-	$_SESSION['usuarioTipo'] = $resultado['tipo']; // Pega o valor da coluna 'tipo' do registro encontrado no MySQL
+	$_SESSION['usuarioID'] = $resultado['usuarioID']; // Pega o valor da coluna 'id do registro encontrado no MySQL
+	$_SESSION['usuarioNome'] = $resultado['nomeUsuario']; // Pega o valor da coluna 'nome' do registro encontrado no MySQL
+	$_SESSION['usuarioTipo'] = $resultado['tipoUsuario']; // Pega o valor da coluna 'tipo' do registro encontrado no MySQL
 	// $_SESSION['usuarioAcessoParque'] = $resultado['getIdParque']; // Pega o valor da coluna 'getIdParque' do registro encontrado no MySQL
 	$_SESSION['link'] = $_SG['link']; // De conexão ao msqlI
 
@@ -121,7 +121,7 @@ function validaUsuario($login, $senha) {
 		// Definimos dois valores na sessão com os dados do login
 		$_SESSION['usuarioLogin'] = $login;
 		$_SESSION['usuarioSenha'] = $senhaDeCod;
-		$_SESSION['usuarioTipo'] = $resultado['tipo'];
+		$_SESSION['usuarioTipo'] = $resultado['tipoUsuario'];
 		$_SESSION['link'] = $_SG['link'];
 	}
 	return true;
