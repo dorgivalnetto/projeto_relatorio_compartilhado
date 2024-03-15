@@ -31,4 +31,3 @@ function permissao($page) {
     if ($lsSelectPermissoesPorIdUser->$page == 0): expulsaVisitante(); endif;
 }
 
-
