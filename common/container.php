@@ -10,7 +10,7 @@
 
   <!-- Page Heading -->
   <h1 class="h3 mb-2 text-gray-800">Dashboards</h1>
-  <p class="mb-4">Acompanhe os principais painéis de análise de dados.</p>
+  <p class="mb-4">Preencha o Relatório de suas ações aqui.</p>
 
   <div class="row">
   <?

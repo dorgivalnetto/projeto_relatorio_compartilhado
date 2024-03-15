@@ -17,7 +17,7 @@ services:
     ports: 
       - "3306:3306"
     environment:
-      MYSQL_DATABASE: new_test
+      MYSQL_DATABASE: proex_db
       MYSQL_USER: user
       MYSQL_PASSWORD: 123456
       MYSQL_ROOT_PASSWORD: 123456
