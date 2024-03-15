@@ -43,25 +43,25 @@ function labelActive($ahref){
 
 // TRAZ O NOME DO USER PELO ID DELE
 function nomeUserRegistro($id_usu){
-    $query = mysqli_query($_SESSION['link'] ,"SELECT id_usu, nome FROM usuario
-        WHERE (id_usu = $id_usu)
+    $query = mysqli_query($_SESSION['link'] ,"SELECT usuarioID, nomeUsuario FROM usuarios
+        WHERE (usuarioID = $id_usu)
         ") or die(mysql_error());
     $lsNomeUserRegistro = mysqli_fetch_object($query);
-    return $lsNomeUserRegistro->nome;
+    return $lsNomeUserRegistro->nomeUsuario;
 }
 
 //FUNÇÃO PARA PEGAR A DATA DE REGISTRO DESSE USER
 function dataUser($idUser){
 	global $link;
-    $query = mysqli_query($link,"SELECT * FROM usuario
-    	WHERE (usuario.id_usu = $idUser)
+    $query = mysqli_query($link,"SELECT * FROM usuarios
+    	WHERE (usuarios.usuarioID = $idUser)
         ") or die(mysql_error());
     return $query;
 }
 function pegaFoto($id_usu){
     global $link;
     $query = mysqli_query($link,"SELECT *
-        FROM usuario
+        FROM usuarios
         -- INNER JOIN persons ON (usuario.id_usu = persons.getIdPersonsUser)
          ") or die(mysql_error());
     return $query;

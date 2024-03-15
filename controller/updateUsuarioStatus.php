@@ -7,10 +7,10 @@ include("../seguranca.php");
 	$status = $_POST['status'];
 
 	//REALIZAR O UPDATE
-	$query = mysqli_query($_SG['link'],"UPDATE usuario
+	$query = mysqli_query($_SG['link'],"UPDATE usuarios
 			SET
 				status = '$status'
-			WHERE ( id_usu = $id_usu )
+			WHERE ( usuarioID = $id_usu )
 			")
 			or die(mysqli_error($_SG['link']));
 

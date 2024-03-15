@@ -41,23 +41,25 @@ permissao($_GET['page']);
 
                     <div class="form-row">
                       <div class="form-group col-md-4">
-                        <label for="get_id_unidade_academica">Selecione a Unidade Acadêmica</label>                    
+                        <label for="get_id_unidade_academica">Selecione a Unidade Acadêmica</label>
                           <select id="get_id_unidade_academica" name="get_id_unidade_academica" class="custom-select">
-                          <?
-                          // traz a lista das unidades acadêmicas
-                          $selectUnidadeAcademica = selectUnidadeAcademica();
-                          while($lsselectUnidadeAcademica = mysqli_fetch_object($selectUnidadeAcademica)):
-                          ?>
-                            <option value="<?= $lsselectUnidadeAcademica->id_unid_aca  ?>"><?= $lsselectUnidadeAcademica->nome_unidade_academica ?></option>
-                          <? endwhile; ?>
+                            <option value="0"></option>
+                            <?
+                            // traz a lista das unidades acadêmicas
+                            $selectUnidadeAcademica = selectUnidadeAcademica();
+                            while($lsselectUnidadeAcademica = mysqli_fetch_object($selectUnidadeAcademica)):
+                            ?>
+                              <option value="<?= $lsselectUnidadeAcademica->unidadeAcademicaID  ?>"><?= $lsselectUnidadeAcademica->nome_UA ?></option>
+                            <? endwhile; ?>
                           </select>
                       </div>
 
                       <div class="form-group col-md-4">
                         <label for="get_id_tipo">Perfil</label>                    
                           <select id="get_id_tipo" name="get_id_tipo" class="custom-select">
-                            <option value="0">Administrador</option>
-                            <option value="1">Usuário Comum</option>
+                            <option value="0"></option>
+                            <option value="1">Administrador</option>
+                            <option value="2">Usuário Comum</option>
                           </select>
                       </div>
 
@@ -78,8 +80,8 @@ permissao($_GET['page']);
             <div class="card shadow mb-4">
               <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary"><?= totalProfiles() ?> Usuários Cadastrados</h6>
-                <h6 class="m-0 text-primary"><small><?= totalProfilesByType(0) ?> Administrador(es)</small></h6>
-                <h6 class="m-0 text-primary"><small><?= totalProfilesByType(1) ?> Usuário Final</small></h6>
+                <h6 class="m-0 text-primary"><small><?= totalProfilesByType(1) ?> Administrador(es)</small></h6>
+                <h6 class="m-0 text-primary"><small><?= totalProfilesByType(0) ?> Usuário Final</small></h6>
 
               </div>
               <div class="card-body">
@@ -91,7 +93,7 @@ permissao($_GET['page']);
                         <th>Nome</th>
                         <th>Email</th>
                         <th>Unidade Acadêmica</th>
-                        <th>Matrícula</th>
+                        <th>SIAPE</th>
                         <th>Tipo</th>
                         <th>Status</th>
                       </tr>
@@ -100,16 +102,16 @@ permissao($_GET['page']);
                     <?
                     $selectProfiles = selectProfiles();
                     while($lsSelectProfiles = mysqli_fetch_object($selectProfiles)):
-                      switch ($lsSelectProfiles->tipo) {
+                      switch ($lsSelectProfiles->tipoUsuario) {
                         case '0':
-                          $tipo = 'Administrador';
+                          $tipo = 'Usuário Comum';
                           break;
                         case '1':
-                          $tipo = 'Usuário Comum';
+                          $tipo = 'Administrador';
                           break;
                       }
                       //TRATA O LABEL DO STATUS
-                      switch ($lsSelectProfiles->status) {
+                      switch ($lsSelectProfiles->statusUsuario) {
                         case '0':
                           $statusDeAcesso = 'Inativo';
                           break;
@@ -119,44 +121,44 @@ permissao($_GET['page']);
                       }                      
                     ?>
                         <tr>
-                            <td><small><?= $lsSelectProfiles->id_usu ?> </small></td>
+                            <td><small><?= $lsSelectProfiles->usuarioID ?> </small></td>
                             <td><small>
 
                       <? // TESTANDO SE O USER LOGADO É SINGLE. SINGLE NÃO TEM BTN-SUBMIT
-                        if(($_SESSION['usuarioTipo'] == 1) and ($_SESSION['usuarioID'] != $lsSelectProfiles->idPeople )):?>
-                          <?= $lsSelectProfiles->nome ?>
+                        if(($_SESSION['usuarioTipo'] == 1) and ($_SESSION['usuarioID'] != $lsSelectProfiles->idPeople)):?>
+                          <?= $lsSelectProfiles->nomeUsuario?>
                         <? else: ?>
-                        <a href="?page=profileEditDoAdmin&asdf=<?= base64_encode($lsSelectProfiles->id_usu) ?>"><?= $lsSelectProfiles->nome ?></a>
-                        <!-- <a href="?page=profileEditDoAdmin&asdf=<?= base64_encode($lsSelectProfiles->id_usu); ?>" type="submit" class="btn btn-success btn-sm btn-flat"><i class="fa fa-edit"></i> Edit Profile</a> -->
+                        <a href="?page=profileEditDoAdmin&asdf=<?= base64_encode($lsSelectProfiles->usuarioID) ?>"><?= $lsSelectProfiles->nomeUsuario ?></a>
+                        <!-- <a href="?page=profileEditDoAdmin&asdf=<?= base64_encode($lsSelectProfiles->usuarioID); ?>" type="submit" class="btn btn-success btn-sm btn-flat"><i class="fa fa-edit"></i> Edit Profile</a> -->
                         <? endif ?>
 
                               <br>
-                            <span class="text-gray-500">registrado em: <? $dataRegistro = new DateTime($lsSelectProfiles->dataRegistro ); echo $dataRegistro->format('d/m/Y H:i'); ?></span></small></td>
-                            <td><small><?= $lsSelectProfiles->login ?></small></td>
-                            <td><small><?= $lsSelectProfiles->nome_unidade_academica ?></small></td>
-                            <td><small><?= $lsSelectProfiles->matricula ?></small></td>
-                            <td><?//= $lsSelectProfiles->tipo ?>
-                      <span class="badge badge-<?= $lsSelectProfiles->tipo == 0 ? 'success' : 'danger'; ?>"><?= $tipo ?></span>
-                      <span class="badge badge-<?= $lsSelectProfiles->status == 0 ? 'warning' : 'info'; ?>"><?= $statusDeAcesso ?></span>
+                            <span class="text-gray-500">registrado em: <? $dataRegistro = new DateTime($lsSelectProfiles->dataRegistroUsuario); echo $dataRegistro->format('d/m/Y H:i'); ?></span></small></td>
+                            <td><small><?= $lsSelectProfiles->loginUsuario ?></small></td>
+                            <td><small><?= $lsSelectProfiles->unidadeAcademicaUsuario ?></small></td>
+                            <td><small><?= $lsSelectProfiles->siapeUsuario ?></small></td>
+                            <td><?//= $lsSelectProfiles->tipoUsuario ?>
+                      <span class="badge badge-<?= $lsSelectProfiles->tipoUsuario == 0 ? 'success' : 'danger'; ?>"><?= $tipo ?></span>
+                      <span class="badge badge-<?= $lsSelectProfiles->statusUsuario == 0 ? 'warning' : 'info'; ?>"><?= $statusDeAcesso ?></span>
                               
                             </td>
                             <td>
 
                       <?php // TESTANDO SE O USER LOGADO É SINGLE. SINGLE NÃO TEM BTN-SUBMIT
-                        if(($_SESSION['usuarioTipo'] == 1) and ($_SESSION['usuarioID'] != $lsSelectProfiles->idPeople )): echo "";else:?>
+                        if(($_SESSION['usuarioTipo'] == 1) and ($_SESSION['usuarioID'] != $lsSelectProfiles->idPeople)): echo "";else:?>
                             <!--
                                 STTAUS 0(ZERO) O USER ESTÁ DESATIVADO.
                                 STATUS 1 ESTÁ ATIVO PARA ACESSO AO SISTEMA
                             -->
-                            <?php if ($lsSelectProfiles->status == 0):?>
+                            <?php if ($lsSelectProfiles->statusUsuario == 0):?>
                             <form method="post" action="controller/updateUsuarioStatus.php" enctype="multipart/form-data">
-                                <input type="hidden" id="id_usu" name="id_usu" value="<?= $lsSelectProfiles->id_usu ?>">
+                                <input type="hidden" id="id_usu" name="id_usu" value="<?= $lsSelectProfiles->usuarioID?>">
                                 <input type="hidden" id="status" name="status" value="1">
                                 <button type="submit" class="btn btn-info btn-sm"><small>Ativar</small></button>
                             </form>
                             <?php else: ?>
                             <form method="post" action="controller/updateUsuarioStatus.php" enctype="multipart/form-data">
-                                <input type="hidden" id="id_usu" name="id_usu" value="<?= $lsSelectProfiles->id_usu ?>">
+                                <input type="hidden" id="id_usu" name="id_usu" value="<?= $lsSelectProfiles->usuarioID?>">
                                 <input type="hidden" id="status" name="status" value="0">
                                 <button type="submit" class="btn btn-sm btn-warning"><small>Desativar</small></button>
                             </form>

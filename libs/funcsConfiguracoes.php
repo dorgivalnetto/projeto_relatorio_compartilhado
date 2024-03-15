@@ -5,7 +5,7 @@ include_once("dataConfig.php");
 // TRAZ O TOTAL DE UNIDADES ACADÊMICAS
 function totalPrefeituras() {
     global $link;
-    $query = mysqli_query($link, "SELECT * FROM unidade_academica") or die(mysqli_error($link));
+    $query = mysqli_query($link, "SELECT * FROM unidadeAcademica") or die(mysqli_error($link));
     $row = mysqli_num_rows($query);
     return $row;
 }
@@ -13,16 +13,16 @@ function totalPrefeituras() {
 // LISTA AS UNIDADES ACADÊMICAS
 function selectUnidadeAcademica() {
     global $link;
-    $query = mysqli_query($link, "SELECT * FROM unidade_academica ORDER BY nome_unidade_academica") or die(mysqli_error($link));
+    $query = mysqli_query($link, "SELECT * FROM unidadeAcademica ORDER BY nome_UA") or die(mysqli_error($link));
     return $query;
 }
 
 // LISTA AS UNIDADES ACADÊMICAS TODAS SÓ O ID E NOME
 function selectUnidadesAcademicaIdNome() {
     global $link;
-    $query = mysqli_query($link, "SELECT id_unid_aca, nome_unidade_academica
-                FROM unidade_academica 
-                ORDER BY nome_unidade_academica
+    $query = mysqli_query($link, "SELECT unidadeAcademicaID, nome_UA
+                FROM unidadeAcademica 
+                ORDER BY nome_UA
             ") or die(mysqli_error($link));
     return $query;
 }
@@ -30,9 +30,9 @@ function selectUnidadesAcademicaIdNome() {
 // LISTA AS PREFEITURAS PELO ID DA PREFEITURAS
 function selectUnidadeAcademicaPeloId($id_unid_aca) {
     global $link;
-    $query = mysqli_query($link, "SELECT * FROM unidade_academica 
-                WHERE id_unid_aca = '$id_unid_aca'
-                ORDER BY nome_unidade_academica
+    $query = mysqli_query($link, "SELECT * FROM unidadeAcademica 
+                WHERE unidadeAcademicaID = '$id_unid_aca'
+                ORDER BY nome_UA
             ") or die(mysqli_error($link));
     return $query;
 }
