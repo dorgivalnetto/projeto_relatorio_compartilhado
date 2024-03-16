@@ -12,6 +12,9 @@ function rota($page) {
 		case 'logout':
 			require 'pages/logout.php';
 			break;
+		case 'relatorios':
+			require 'pages/relatorios.php';
+			break;
 
 
 		// PROFILE

@@ -2,7 +2,7 @@
 // SO ENTRA AQUI TB SE ESTIVER LOGADO
 protegePagina();
 // PUXA AS PERMISSOES
-permissao($_GET['page']);
+permissao('usuarios');
 ?>
       <!-- Content Wrapper -->
       <div id="content-wrapper" class="d-flex flex-column">
@@ -66,7 +66,11 @@ permissao($_GET['page']);
                       <div class="form-group col-md-4">
                             <label for="login">SIAPE / Matrícula</label>
                             <input type="text" class="form-control" id="matricula" name="matricula" placeholder="" required>
-                        </div>
+                      </div>
+                      <div class="form-group col-md-4">
+                            <label for="login">CPF</label>
+                            <input type="text" class="form-control" id="cpf" name="cpf" placeholder="" required>
+                      </div>
                     </div>                  
 
                     <button type="submit" class="btn btn-primary">Cadastrar novo Usuário</button>

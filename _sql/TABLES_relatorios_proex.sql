@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `cpfUsuario` char(11) NOT NULL,
   `loginUsuario` tinytext NOT NULL,
   `senhaUsuario` tinytext NOT NULL,
-  `tipoUsuario`   BIT NOT NULL, -- a user can be admin or not
+  `tipoUsuario` char(2) NOT NULL, -- a user can be admin or not
   `statusUsuario` int(11) NOT NULL, -- if an account is active or not
   `unidadeAcademicaUsuario` int(11) NOT NULL,
   `registroUsuario_ID` int(11) NOT NULL,
@@ -144,10 +144,10 @@ CREATE TABLE IF NOT EXISTS `tipoMembro` (
 --
 
 CREATE TABLE IF NOT EXISTS `permissoes` (
-  `idPermissao` int(11) NOT NULL,
+  `idPermissao` int(11) NOT NULL AUTO_INCREMENT,
   `usuarios` int(11) DEFAULT 0,
   `getIdUsu` int(11) NOT NULL DEFAULT 0,
-  `configuracoes_prefeituras` int(11) NOT NULL DEFAULT 0,
+  `relatorios` int(11) NOT NULL DEFAULT 1,
   `configuracoes_secretarias` int(11) NOT NULL DEFAULT 0,
   `configuracoes_diretorias` int(11) NOT NULL DEFAULT 0,
   `configuracoes_estrutura` int(11) NOT NULL DEFAULT 0,
@@ -175,5 +175,6 @@ CREATE TABLE IF NOT EXISTS `permissoes` (
   `dash_vigencia_de_contratos` int(11) NOT NULL DEFAULT 0,
   `dash_combustiveis` int(11) NOT NULL DEFAULT 0,
   `dash_ordens_judiciais` int(11) NOT NULL DEFAULT 0,
-  `dash_central_de_marcacoes` int(11) NOT NULL DEFAULT 0
+  `dash_central_de_marcacoes` int(11) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`idPermissao`)
 ) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;

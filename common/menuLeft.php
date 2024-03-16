@@ -28,66 +28,14 @@ $lsSelectPermissoesPorIdUser = mysqli_fetch_object($selectPermissoesPorIdUser);
         </a>
     </li>
 
-    <? /*if (($lsSelectPermissoesPorIdUser->formularios_almoxarifado == 0) AND 
-        ($lsSelectPermissoesPorIdUser->formularios_ordens_judiciais == 0) AND 
-        ($lsSelectPermissoesPorIdUser->formularios_vigencia_contratos == 0)): echo ""; else: ?>
-            */
-        if (($lsSelectPermissoesPorIdUser->formularios_relatorio == 0) ): echo ""; else: ?>
-    
-        <!-- Divider -->
-        <hr class="sidebar-divider">
-
-        <!-- Heading -->
-        <div class="sidebar-heading">
-            Seção
-        </div>
-
-        <!-- Nav Item - Formulários -->
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFormularios"
-                aria-expanded="true" aria-controls="collapseFormularios">
-                <i class="fas fa-fw fa-cog"></i>
-                <span>Relatórios</span>
-            </a>
-            <div id="collapseFormularios" class="collapse" aria-labelledby="headingFormularios" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Relatórios</h6>
-
-                    <? if ($lsSelectPermissoesPorIdUser->formularios_relatorio == 0): echo ""; else: ?>
-                        <a class="collapse-item" href="?page=formularios_relatorio">Editais Vigentes</a>
-                    <? endif; ?>
-                    
-                </div>
-            </div>
-        </li>
-
-    <? endif; ?>
-
-    <? if (($lsSelectPermissoesPorIdUser->processos_inserir == 0) AND 
-        ($lsSelectPermissoesPorIdUser->processos_stages == 0) AND 
-        ($lsSelectPermissoesPorIdUser->processos_powerbi == 0)): echo ""; else: ?>
-
-        <!-- Nav Item - Repositórios Processos -->
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseProcessos"
-                aria-expanded="true" aria-controls="collapseProcessos">
-                <i class="fas fa-fw fa-folder"></i>
-                <span>Relatórios</span>
-            </a>
-            <div id="collapseProcessos" class="collapse" aria-labelledby="headingProcessos"
-                data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Controles:</h6>
-
-                    <? if ($lsSelectPermissoesPorIdUser->processos_inserir == 0): echo ""; else: ?>
-                        <a class="collapse-item" href="?page=processos_inserir"><i class="fas fa-list"></i> Novo Relatório</a>
-                    <? endif; ?>
-
-                </div>
-            </div>
-        </li>
-
-    <? endif; ?>
+    <!-- Nav Item - Relatorios -->
+    <li class="nav-item active">
+        <a class="nav-link"  href="indexLogado.php?page=relatorios">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <i class="fa-duotone fa-house"></i>
+            <span>Relatórios</span>
+        </a>
+    </li>
 
     <!-- Divider -->
     <hr class="sidebar-divider">
