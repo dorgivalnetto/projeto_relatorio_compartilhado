@@ -68,6 +68,46 @@ permissao('relatoriofinal');
                     </div>
 
                 </div>                  
+            </div>
+        </div>
+    </div>
+
+    <!-- DETALHAMENTO DAS ATIVIDADES -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h5 class="m-0 font-weight-bold text-primary">Detalhamento das Atividades</h5>
+            <h6 class="m-0 font-weight-light text-secondary">Para cada atividade, coloque um número identificador e sua descrição.</h6>
+        </div>
+        <div class="card-body">
+            <div id="create-user-main-form" class="">
+                <div class="form">
+
+                    <div class="form-group">
+                        <label for="atvRealizadas">Liste e Descreva as Atividades Realizadas</label>
+                        <textarea class="form-control" id="atvRealizadas" rows="4" name="atvRealizadas" placeholder="Atividade X - Tour pelas áreas da UFCA feito para alunos da escola Y." required></textarea>
+                    </div>
+
+                </div>                  
+            </div>
+        </div>
+    </div>
+
+    <!-- LOCAIS DAS ATIVIDADES -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h5 class="m-0 font-weight-bold text-primary">Locais das Atividades</h5>
+            <h6 class="m-0 font-weight-light text-secondary">Para cada atividade respondida na questão anterior, digite o local onde ela foi realizada ou então ou então envie o link do local onde a atividade foi realizada seguindo este  <a href="https://docs.google.com/document/d/1PrhWLiudy-u_U8Spk1aJJceEwC6iJtY9J2uvUhIAgxg/edit?usp=sharing">guia</a>.</h6>
+        </div>
+        <div class="card-body">
+            <div id="create-user-main-form" class="">
+                <div class="form">
+
+                    <div class="form-group">
+                        <label for="atvRealizadas">Liste e Descreva os Locais das Atividades Realizadas.</label>
+                        <textarea class="form-control" id="atvRealizadas" rows="4" name="atvRealizadas" placeholder="Atividade X - Universidade Federal do Cariri, CE, Juazeiro do Norte, Cidade Universitária." required></textarea>
+                    </div>
+
+                </div>                  
                 </form>
             </div>
         </div>
