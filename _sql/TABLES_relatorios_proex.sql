@@ -148,7 +148,7 @@ CREATE TABLE IF NOT EXISTS `permissoes` (
   `usuarios` int(11) DEFAULT 0,
   `getIdUsu` int(11) NOT NULL DEFAULT 0,
   `relatorios` int(11) NOT NULL DEFAULT 1,
-  `configuracoes_secretarias` int(11) NOT NULL DEFAULT 0,
+  `relatoriofinal` int(11) NOT NULL DEFAULT 0,
   `configuracoes_diretorias` int(11) NOT NULL DEFAULT 0,
   `configuracoes_estrutura` int(11) NOT NULL DEFAULT 0,
   `configuracoes_servidores` int(11) NOT NULL DEFAULT 0,

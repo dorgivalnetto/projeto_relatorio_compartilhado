@@ -15,7 +15,11 @@ function rota($page) {
 			require 'pages/relatorios.php';
 			break;
 
-
+		//FORMULARIO ACOES
+		case 'relatoriofinal':
+			require 'pages/formulario_relatorio.php';
+			break;
+			
 		// PROFILE
 		case 'meu_perfil':
 			require 'pages/meu_perfil.php';

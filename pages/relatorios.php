@@ -9,7 +9,7 @@ permissao('relatorios');
 
   <!-- Page Heading -->
   <h1 class="h3 mb-2 text-gray-800">Relatórios</h1>
-  <p class="mb-4">Preencha o Relatório Final de suas ações aqui.</p>
+  <p class="mb-4">Escolha uma ação para preencher seu Relatório Final.</p>
 
   <div class="row">
   <?
@@ -23,7 +23,7 @@ permissao('relatorios');
         <? else: ?>
           <div class="card border-left-primary shadow h-100 py-2">
         <? endif; ?>
-          <a href="?page=/formularios_relatorio/formularios_relatorio.php"> <!-- inserir em ls a pagina do relatorio -->
+          <a href="indexLogado.php?page=relatoriofinal"> <!-- inserir em ls a pagina do relatorio -->
             <div class="card-body">
               <div class="row no-gutters align-items-center">
                 <div class="col mr-2">
