@@ -116,6 +116,16 @@ CREATE TABLE IF NOT EXISTS `alunoContribuinte` (
 ) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
 
 --
+-- Estrutura para tabela `tipoMembro`
+--
+
+CREATE TABLE IF NOT EXISTS `tipoMembro` (
+  `tipoMembroID` int(11) NOT NULL AUTO_INCREMENT,
+  `nomeTipo` tinytext NOT NULL,
+  PRIMARY KEY (`tipoMembroID`)
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
+
+--
 -- Estrutura para tabela `membroEquipe`
 --
 
@@ -126,17 +136,8 @@ CREATE TABLE IF NOT EXISTS `membroEquipe` (
   `tipoMembro` int(11) NOT NULL,
   PRIMARY KEY (`membroEquipeID`),
   FOREIGN KEY (`acao_ME_ID`) REFERENCES `acoes` (`acaoID`)  ON DELETE CASCADE ON UPDATE CASCADE,
-  FOREIGN KEY (`usuario_ME_ID`) REFERENCES `usuarios` (`usuarioID`)  ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
-
---
--- Estrutura para tabela `tipoMembro`
---
-
-CREATE TABLE IF NOT EXISTS `tipoMembro` (
-  `tipoMembroID` int(11) NOT NULL AUTO_INCREMENT,
-  `nomeTipo` tinytext NOT NULL,
-  PRIMARY KEY (`tipoMembroID`)
+  FOREIGN KEY (`usuario_ME_ID`) REFERENCES `usuarios` (`usuarioID`)  ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (`tipoMembro`) REFERENCES `tipoMembro` (`TipoMembroID`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
 
 --
