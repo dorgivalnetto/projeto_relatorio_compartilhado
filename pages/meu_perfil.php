@@ -29,26 +29,22 @@
                       <div class="form-row">
                         <div class="form-group col-md-4">
                           <label for="input-name">Nome</label>
-                          <input type="text" class="form-control" id="input-name" value="<?= $lsSelectMyProfile->nome ?>" disabled>
+                          <input type="text" class="form-control" id="input-name" value="<?= $lsSelectMyProfile->nomeUsuario ?>" disabled>
                         </div>
                         <div class="form-group col-md-4">
                           <label for="login">Email</label>
-                          <input type="text" class="form-control" id="login" name="login" value="<?= $lsSelectMyProfile->login ?>" required>
+                          <input type="text" class="form-control" id="login" name="login" value="<?= $lsSelectMyProfile->loginUsuario ?>" required>
                         </div>
                       <!-- </div> -->
 
                       <!-- <div class="form-row"> -->
                         <div class="form-group col-md-4">
                             <label for="senha">Senha</label>
-                            <input type="password" class="form-control" id="senha" name="senha" placeholder="nova senha">
+                            <input type="password" class="form-control" id="senha" name="senha" placeholder="" required>
                         </div>
-<!--                         <div class="form-group col-md-6">
-                          <label for="input-name">Confirmar Senha</label>
-                          <input type="password" class="form-control" id="input-confirm-password-profile" value="" required>
-                        </div> -->
                       </div>
                       <input type="hidden" id="idUsu" name="idUsu" value="<?= $_SESSION['usuarioID'] ?>">
-                      <input type="hidden" id="senhaEmDB" name="senhaEmDB" value="<?= $lsSelectMyProfile->senha ?>">
+                      <input type="hidden" id="senhaEmDB" name="senhaEmDB" value="<?= $lsSelectMyProfile->senhaUsuario ?>">
 
                       <button type="submit" class="btn btn-warning">Alterar</button>
                     </form>

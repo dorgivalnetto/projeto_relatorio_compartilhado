@@ -64,12 +64,12 @@ permissao('usuarios');
                       </div>
 
                       <div class="form-group col-md-4">
-                            <label for="login">SIAPE / Matrícula</label>
+                            <label for="login">SIAPE</label>
                             <input type="text" class="form-control" id="matricula" name="matricula" placeholder="" required>
                       </div>
                       <div class="form-group col-md-4">
                             <label for="login">CPF</label>
-                            <input type="text" class="form-control" id="cpf" name="cpf" placeholder="" required>
+                            <input type="text" class="cpf form-control" id="cpf" name="cpf" placeholder="" required>
                       </div>
                     </div>                  
 
@@ -85,7 +85,7 @@ permissao('usuarios');
               <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary"><?= totalProfiles() ?> Usuários Cadastrados</h6>
                 <h6 class="m-0 text-primary"><small><?= totalProfilesByType(1) ?> Administrador(es)</small></h6>
-                <h6 class="m-0 text-primary"><small><?= totalProfilesByType(0) ?> Usuário Final</small></h6>
+                <h6 class="m-0 text-primary"><small><?= totalProfilesByType(2) ?> Usuário Final</small></h6>
 
               </div>
               <div class="card-body">
@@ -129,27 +129,24 @@ permissao('usuarios');
                             <td><small>
 
                       <? // TESTANDO SE O USER LOGADO É SINGLE. SINGLE NÃO TEM BTN-SUBMIT
-                        if(($_SESSION['usuarioTipo'] == 1) and ($_SESSION['usuarioID'] != $lsSelectProfiles->idPeople)):?>
+                        if(($_SESSION['usuarioTipo'] == 1) and ($_SESSION['usuarioID'] != $lsSelectProfiles->usuarioID)):?>
                           <?= $lsSelectProfiles->nomeUsuario?>
                         <? else: ?>
                         <a href="?page=profileEditDoAdmin&asdf=<?= base64_encode($lsSelectProfiles->usuarioID) ?>"><?= $lsSelectProfiles->nomeUsuario ?></a>
-                        <!-- <a href="?page=profileEditDoAdmin&asdf=<?= base64_encode($lsSelectProfiles->usuarioID); ?>" type="submit" class="btn btn-success btn-sm btn-flat"><i class="fa fa-edit"></i> Edit Profile</a> -->
+                        <a href="?page=profileEditDoAdmin&asdf=<?= base64_encode($lsSelectProfiles->usuarioID); ?>" type="submit" class="btn btn-success btn-sm btn-flat"><i class="fa fa-edit"></i> Edit Profile</a>
                         <? endif ?>
 
                               <br>
                             <span class="text-gray-500">registrado em: <? $dataRegistro = new DateTime($lsSelectProfiles->dataRegistroUsuario); echo $dataRegistro->format('d/m/Y H:i'); ?></span></small></td>
                             <td><small><?= $lsSelectProfiles->loginUsuario ?></small></td>
-                            <td><small><?= $lsSelectProfiles->unidadeAcademicaUsuario ?></small></td>
+                            <td><small><?= whichUnidadeAcademica($lsSelectProfiles->unidadeAcademicaUsuario) ?></small></td>
                             <td><small><?= $lsSelectProfiles->siapeUsuario ?></small></td>
-                            <td><?//= $lsSelectProfiles->tipoUsuario ?>
-                      <span class="badge badge-<?= $lsSelectProfiles->tipoUsuario == 0 ? 'success' : 'danger'; ?>"><?= $tipo ?></span>
-                      <span class="badge badge-<?= $lsSelectProfiles->statusUsuario == 0 ? 'warning' : 'info'; ?>"><?= $statusDeAcesso ?></span>
-                              
+                            <td>
+                              <span class="badge badge-<?= $lsSelectProfiles->tipoUsuario == 1 ? 'success' : 'danger'; ?>"><?= $tipo ?></span>
+                              <span class="badge badge-<?= $lsSelectProfiles->statusUsuario == 0 ? 'warning' : 'info'; ?>"><?= $statusDeAcesso ?></span>
                             </td>
                             <td>
 
-                      <?php // TESTANDO SE O USER LOGADO É SINGLE. SINGLE NÃO TEM BTN-SUBMIT
-                        if(($_SESSION['usuarioTipo'] == 1) and ($_SESSION['usuarioID'] != $lsSelectProfiles->idPeople)): echo "";else:?>
                             <!--
                                 STTAUS 0(ZERO) O USER ESTÁ DESATIVADO.
                                 STATUS 1 ESTÁ ATIVO PARA ACESSO AO SISTEMA
@@ -167,8 +164,6 @@ permissao('usuarios');
                                 <button type="submit" class="btn btn-sm btn-warning"><small>Desativar</small></button>
                             </form>
                             <?php endif; ?>
-
-                      <?php endif ;?>
                               
                             </td>
                         </tr>

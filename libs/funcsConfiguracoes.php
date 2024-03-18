@@ -3,11 +3,21 @@ include_once("dataConfig.php");
 
 ////// UNIDADES ACADÊMICAS
 // TRAZ O TOTAL DE UNIDADES ACADÊMICAS
-function totalPrefeituras() {
+function totalUnidadeAcademica() {
     global $link;
     $query = mysqli_query($link, "SELECT * FROM unidadeAcademica") or die(mysqli_error($link));
     $row = mysqli_num_rows($query);
     return $row;
+}
+
+//PROCURA POR UMA UNIDADE ACADEMICA TENDO SEU ID
+function whichUnidadeAcademica($idUA){
+    global $link;
+    $query = mysqli_query($link, "SELECT nome_UA FROM unidadeAcademica 
+                WHERE unidadeAcademicaID=$idUA
+            ") or die(mysqli_error($link));
+    $query = mysqli_fetch_object($query);
+    return $query->nome_UA;
 }
 
 // LISTA AS UNIDADES ACADÊMICAS
