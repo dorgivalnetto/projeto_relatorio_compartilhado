@@ -21,6 +21,7 @@
 
   <!-- Custom styles for this page -->
   <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/3dc818954a.js" crossorigin="anonymous"></script>
 
   <!-- SELECT2 -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>

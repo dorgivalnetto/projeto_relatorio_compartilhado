@@ -22,8 +22,7 @@ $lsSelectPermissoesPorIdUser = mysqli_fetch_object($selectPermissoesPorIdUser);
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
         <a class="nav-link"  href="indexLogado.php?page=dashboard">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
-            <i class="fa-duotone fa-house"></i>
+            <i class="fas fa-home"></i>
             <span>Início</span>
         </a>
     </li>
@@ -31,8 +30,7 @@ $lsSelectPermissoesPorIdUser = mysqli_fetch_object($selectPermissoesPorIdUser);
     <!-- Nav Item - Relatorios -->
     <li class="nav-item active">
         <a class="nav-link"  href="indexLogado.php?page=relatorios">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
-            <i class="fa-duotone fa-house"></i>
+            <i class="fa-solid fa-book"></i>
             <span>Relatórios</span>
         </a>
     </li>
@@ -57,57 +55,14 @@ $lsSelectPermissoesPorIdUser = mysqli_fetch_object($selectPermissoesPorIdUser);
 
     <? endif; ?>
 
-    <? if (($lsSelectPermissoesPorIdUser->configuracoes_prefeituras == 0) AND 
-        ($lsSelectPermissoesPorIdUser->configuracoes_secretarias == 0) AND 
-        ($lsSelectPermissoesPorIdUser->configuracoes_diretorias == 0) AND 
-        ($lsSelectPermissoesPorIdUser->configuracoes_estrutura == 0)): echo ""; else: ?>
+    <? if($lsSelectPermissoesPorIdUser->acoes == 0): echo ""; else: ?>
 
-        <!-- Nav Item - Configurações -->
+        <!-- Nav Item - Ações -->
         <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseConfiguracoes"
-                aria-expanded="true" aria-controls="collapseConfiguracoes">
-                <i class="fas fa-fw fa-cog"></i>
-                <span>Configurações</span>
+            <a class="nav-link" href="?page=acoes">
+                <i class="fa-solid fa-book"></i>
+                <span>Cadastrar Ações</span>
             </a>
-            <div id="collapseConfiguracoes" class="collapse" aria-labelledby="headingConfiguracoes" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Ambiente EGP:</h6>
-
-                    <? if ($lsSelectPermissoesPorIdUser->configuracoes_prefeituras == 0): echo ""; else: ?>
-                        <a class="collapse-item" href="?page=configuracoes_prefeituras">Prefeituras</a>
-                    <? endif; ?>
-
-                    <? if ($lsSelectPermissoesPorIdUser->configuracoes_secretarias == 0): echo ""; else: ?>
-                        <a class="collapse-item" href="?page=configuracoes_secretarias">Secretarias</a>
-                    <? endif; ?>
-
-                    <? if ($lsSelectPermissoesPorIdUser->configuracoes_diretorias == 0): echo ""; else: ?>
-                        <a class="collapse-item" href="?page=configuracoes_diretorias">Diretorias</a>
-                    <? endif; ?>
-
-                    <? if ($lsSelectPermissoesPorIdUser->configuracoes_estrutura == 0): echo ""; else: ?>
-                        <a class="collapse-item" href="?page=configuracoes_estrutura">Estrutura Organizacional</a>
-                    <? endif; ?>
-
-                    <h6 class="collapse-header">Recursos Humanos:</h6>
-
-                    <? if ($lsSelectPermissoesPorIdUser->configuracoes_servidores == 0): echo ""; else: ?>
-                        <a class="collapse-item" href="?page=configuracoes_servidores">Servidores</a>
-                    <? endif; ?>
-
-                    <? if ($lsSelectPermissoesPorIdUser->configuracoes_cargos == 0): echo ""; else: ?>
-                        <a class="collapse-item" href="?page=configuracoes_cargos">Cargos</a>
-                    <? endif; ?>
-
-                    <? if ($lsSelectPermissoesPorIdUser->configuracoes_lotacoes == 0): echo ""; else: ?>
-                        <a class="collapse-item" href="?page=configuracoes_lotacoes">Lotações</a>
-                    <? endif; ?>
-
-                    <? if ($lsSelectPermissoesPorIdUser->configuracoes_vinculos == 0): echo ""; else: ?>
-                        <a class="collapse-item" href="?page=configuracoes_vinculos">Vínculos</a>
-                    <? endif; ?>
-                </div>
-            </div>
         </li>
 
     <? endif; ?>

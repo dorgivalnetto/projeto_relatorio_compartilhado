@@ -69,7 +69,7 @@ CREATE TABLE IF NOT EXISTS `unidadeAcademica` (
 
 CREATE TABLE IF NOT EXISTS `tipoArea` (
   `tipoAreaID` int(11) NOT NULL AUTO_INCREMENT,
-  `nomeArea` tinytext NOT NULL,
+  `nome_Area` tinytext NOT NULL,
   PRIMARY KEY (`tipoAreaID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
@@ -146,9 +146,10 @@ CREATE TABLE IF NOT EXISTS `membroEquipe` (
 
 CREATE TABLE IF NOT EXISTS `permissoes` (
   `idPermissao` int(11) NOT NULL AUTO_INCREMENT,
-  `usuarios` int(11) DEFAULT 0,
   `getIdUsu` int(11) NOT NULL DEFAULT 0,
   `relatorios` int(11) NOT NULL DEFAULT 1,
   `relatoriofinal` int(11) NOT NULL DEFAULT 1,
+  `acoes` int(11) NOT NULL DEFAULT 0,
+  `usuarios` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`idPermissao`)
 ) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;

@@ -27,7 +27,7 @@ INSERT INTO `tipoAcao` (`tipoAcaoID`, `nome_Tipo`) VALUES
 (5, 'Prestação de Serviço');
 
 SELECT * from `tipoArea`;
-INSERT INTO `tipoArea` (`tipoAreaID`, `nomeArea`) VALUES 
+INSERT INTO `tipoArea` (`tipoAreaID`, `nome_Area`) VALUES 
 (1, 'Cultura'),
 (2, 'Saúde'),
 (3, 'Tecnologia'),
@@ -56,12 +56,12 @@ INSERT INTO `usuarios` (`usuarioID`, `nomeUsuario`, `siapeUsuario`, `cpfUsuario`
 --
 
 SELECT * from `permissoes`;
-INSERT INTO `permissoes` (`idPermissao`, `usuarios`, `getIdUsu`, `relatorios`, `relatoriofinal`) VALUES
-(1, 1, 1, 1, 1),
-(2, 1, 2, 1, 1),
-(3, 1, 3, 1, 1),
-(4, 1, 4, 1, 1),
-(5, 1, 5, 1, 1);
+INSERT INTO `permissoes` (`idPermissao`, `usuarios`, `getIdUsu`, `relatorios`, `relatoriofinal`, `acoes`) VALUES
+(1, 1, 1, 1, 1, 1),
+(2, 1, 2, 1, 1, 1),
+(3, 1, 3, 1, 1, 1),
+(4, 1, 4, 1, 1, 1),
+(5, 0, 5, 1, 1, 0);
 
 SELECT * from `acoes`;
 INSERT INTO `acoes` (`acaoID`, `tituloAcao`, `tipoAcao`, `unidadeAcademicaAcao`, `areaTematicaAcao`) VALUES

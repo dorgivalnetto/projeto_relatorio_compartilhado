@@ -1,16 +1,23 @@
 <?php
 function rota($page) {
 	switch ($page) {
-		// General Pages
+		// PAGES PRINCIPAIS
 		case 'dashboard':
 			require 'common/container.php';
-			break;			
-		case 'usuarios':
-			require 'pages/usuarios.php';
-			break;			
+			break;	
+
 		case 'logout':
 			require 'pages/logout.php';
 			break;
+
+		case 'usuarios':
+			require 'pages/usuarios.php';
+			break;
+
+		case 'acoes':
+			require 'pages/acoes.php';
+			break;
+
 		case 'relatorios':
 			require 'pages/relatorios.php';
 			break;
@@ -24,11 +31,12 @@ function rota($page) {
 		case 'meu_perfil':
 			require 'pages/meu_perfil.php';
 			break;
+
 		case 'profileEditDoAdmin':
 			require 'pages/profileEditDoAdmin.php';
 			break;
 
-
+		// SE NAO TIVER A PAGE COM ESSE NOME, CAI NESSA PAGINA	
 		default:
 			require 'common/container.php';
 	}
