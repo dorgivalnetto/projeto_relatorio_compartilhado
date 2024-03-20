@@ -64,15 +64,15 @@ permissao('usuarios');
                       </div>
 
                       <div class="form-group col-md-4">
-                            <label for="login">SIAPE</label>
+                            <label for="matricula">SIAPE</label>
                             <input type="text" class="form-control" id="matricula" name="matricula" placeholder="" required>
                       </div>
                       <div class="form-group col-md-4">
-                            <label for="login">CPF</label>
+                            <label for="cpf">CPF</label>
                             <input type="text" class="cpf form-control" id="cpf" name="cpf" placeholder="" required>
                       </div>
-                    </div>                  
 
+                    </div>                  
                     <button type="submit" class="btn btn-primary">Cadastrar novo Usuário</button>
                   </form>
 
@@ -107,7 +107,7 @@ permissao('usuarios');
                     $selectProfiles = selectProfiles();
                     while($lsSelectProfiles = mysqli_fetch_object($selectProfiles)):
                       switch ($lsSelectProfiles->tipoUsuario) {
-                        case '0':
+                        case '2':
                           $tipo = 'Usuário Comum';
                           break;
                         case '1':

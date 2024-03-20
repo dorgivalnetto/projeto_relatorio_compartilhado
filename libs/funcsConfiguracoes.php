@@ -20,6 +20,22 @@ function whichUnidadeAcademica($idUA){
     return $query->nome_UA;
 }
 
+function totalAcoes(){
+    global $link;
+    $query = mysqli_query($link ,"SELECT * FROM `acoes`") or die(mysql_error());
+    $row = mysqli_num_rows($query);
+    return $row;
+}
+
+function selectAcoes(){
+    $query = mysqli_query($_SESSION['link'],"SELECT * FROM acoes
+                INNER JOIN membroEquipe ON (membroEquipe.acao_ME_ID = acoes.acaoID)
+                INNER JOIN alunoContribuinte ON (alunoContribuinte.acoes_AC_ID = acoes.acaoID)
+                    INNER JOIN alunos ON (alunos.alunoID = alunoContribuinte.usuario_AC_ID);
+        ") or die(mysql_error());
+    return $query;
+}
+
 // LISTA AS UNIDADES ACADÊMICAS
 function selectUnidadeAcademica() {
     global $link;
@@ -36,6 +52,12 @@ function selectAcaoTipo() {
 function selectAreaTematica() {
     global $link;
     $query = mysqli_query($link, "SELECT * FROM `tipoArea` ORDER BY `nome_Area`") or die(mysqli_error($link));
+    return $query;
+}
+
+function selectUsuarioPeloNome() {
+    global $link;
+    $query = mysqli_query($link, "SELECT * FROM `usuarios` ORDER BY `nomeUsuario`") or die(mysqli_error($link));
     return $query;
 }
 

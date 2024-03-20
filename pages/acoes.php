@@ -4,6 +4,9 @@ protegePagina();
 // PUXA AS PERMISSOES
 permissao('acoes');
 ?>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
       <!-- Content Wrapper -->
       <div id="content-wrapper" class="d-flex flex-column">
 
@@ -15,96 +18,157 @@ permissao('acoes');
             <h1 class="h3 mb-2 text-gray-800">Gestão de Ações</h1>
             
             <!-- Formulário Adicionar -->
+
             <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Adicionar Ação</h6>
+              <div class="card-header py-3">
+                <h5 class="m-0 font-weight-bold text-primary">Adicionar Ação</h5>
+              </div>
+              <div class="card-body">
+                <div id="create-user-main-form" class="">
+                <form role="form" action="controller/insertAcao.php" method="post" enctype="multipart/form-data">
+                  <div class="form-row">
+
+                    <div class="form-group col-md-8">
+                      <label for="tituloAcao">Título da Ação</label>
+                      <input type="text" class="form-control" id="tituloAcao" name="tituloAcao" placeholder="" required>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                      <label for="get_id_coordenador">Selecione o Coordenador da Ação</label>
+                      <select id="get_id_coordenador" name="get_id_coordenador" class="custom-select">
+                        <option value="0"></option>
+                        <?
+                        // traz a lista dos usuarios
+                        $selectNomeUsuario = selectUsuarioPeloNome();
+                        while($lsselectNomeUsuario = mysqli_fetch_object($selectNomeUsuario)):
+                        ?>
+                          <option value="<?= $lsselectNomeUsuario->usuarioID  ?>"><?= $lsselectNomeUsuario->nomeUsuario ?></option>
+                        <? endwhile; ?>
+                      </select>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                      <label for="get_id_acao">Selecione o Tipo da Ação</label>
+                      <select id="get_id_acao" name="get_id_acao" class="custom-select">
+                        <option value="0"></option>
+                        <?
+                        // traz a lista dos tipos
+                        $selectTipoAcao = selectAcaoTipo();
+                        while($lsselectTipoAcao = mysqli_fetch_object($selectTipoAcao)):
+                        ?>
+                          <option value="<?= $lsselectTipoAcao->tipoAcaoID  ?>"><?= $lsselectTipoAcao->nome_Tipo ?></option>
+                        <? endwhile; ?>
+                      </select>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                      <label for="get_id_area">Selecione a Área Temática da Ação</label>
+                      <select id="get_id_area" name="get_id_area" class="custom-select">
+                        <option value="0"></option>
+                        <?
+                        // traz a lista das areas tematicas
+                        $selectAreaAcao = selectAreaTematica();
+                        while($lsselectAreaAcao = mysqli_fetch_object($selectAreaAcao)):
+                        ?>
+                          <option value="<?= $lsselectAreaAcao->tipoAreaID  ?>"><?= $lsselectAreaAcao->nome_Area ?></option>
+                        <? endwhile; ?>
+                      </select>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                      <label for="get_id_unidade_academica">Selecione a Unidade Acadêmica da Ação</label>
+                      <select id="get_id_unidade_academica" name="get_id_unidade_academica" class="custom-select">
+                        <option value="0"></option>
+                        <?
+                        // traz a lista das unidades acadêmicas
+                        $selectUnidadeAcademica = selectUnidadeAcademica();
+                        while($lsselectUnidadeAcademica = mysqli_fetch_object($selectUnidadeAcademica)):
+                        ?>
+                          <option value="<?= $lsselectUnidadeAcademica->unidadeAcademicaID  ?>"><?= $lsselectUnidadeAcademica->nome_UA ?></option>
+                        <? endwhile; ?>
+                      </select>
+                    </div>
+
+                  </div>  
                 </div>
-                <div class="card-body">
-                  <div id="create-user-main-form" class="">
-                  <form role="form" action="controller/insertProfile.php" method="post" enctype="multipart/form-data">
+              </div>
+            </div>
+
+            <script>
+              $(document).ready(function() {
+                $("#botaoAdd").on('click',function() {
+                    $(".append").append(
+                      '<div class="form-row"><div class="form-group col-md-4"><label for="nomeAluno">Nome do Aluno</label><input type="text" class="form-control" id="nomeAluno" name="nomeAluno" placeholder="" required></div><div class="form-group col-md-4"><label for="matricula">Matrícula</label><input type="text" class="form-control" id="matricula" name="matricula" placeholder="" required></div><div class="form-group col-md-4"><label for="cpf">CPF</label><input type="text" class="cpf form-control" id="cpf" name="cpf" placeholder=""></div></div>');
+                });
+              });
+            </script>
+
+            <div class="card shadow mb-4">
+              <div class="card-header py-3">
+                <div class="row">
+
+                  <h5 class="m-0 font-weight-bold text-primary">Adicionar Alunos Contribuintes</h5>
+
+
+
+                </div>
+              </div>
+              <div class="card-body">
+                <div id="create-user-main-form" class="">
+                  <div class="form">
                     <div class="form-row">
-                        <div class="form-group col-md-4">
-                            <label for="nome">Título da Ação</label>
-                            <input type="text" class="form-control" id="nome" name="nome" placeholder="" required>
-                        </div>
-
                       <div class="form-group col-md-4">
-                        <label for="get_id_acao">Selecione o Tipo da Ação</label>
-                          <select id="get_id_acao" name="get_id_acao" class="custom-select">
-                            <option value="0"></option>
-                            <?
-                            // traz a lista dos tipos
-                            $selectTipoAcao = selectAcaoTipo();
-                            while($lsselectTipoAcao = mysqli_fetch_object($selectTipoAcao)):
-                            ?>
-                              <option value="<?= $lsselectTipoAcao->tipoAcaoID  ?>"><?= $lsselectTipoAcao->nome_Tipo ?></option>
-                            <? endwhile; ?>
-                          </select>
+                        <label for="nomeAluno">Nome do Aluno</label>
+                        <input type="text" class="form-control" id="nomeAluno" name="nomeAluno" placeholder="" required>
                       </div>
 
                       <div class="form-group col-md-4">
-                        <label for="get_id_area">Selecione a Área Temática da Ação</label>
-                          <select id="get_id_area" name="get_id_area" class="custom-select">
-                            <option value="0"></option>
-                            <?
-                            // traz a lista das areas tematicas
-                            $selectAreaAcao = selectAreaTematica();
-                            while($lsselectAreaAcao = mysqli_fetch_object($selectAreaAcao)):
-                            ?>
-                              <option value="<?= $lsselectAreaAcao->tipoAreaID  ?>"><?= $lsselectAreaAcao->nome_Area ?></option>
-                            <? endwhile; ?>
-                          </select>
+                        <label for="matricula">Matrícula</label>
+                        <input type="text" class="form-control" id="matricula" name="matricula" placeholder="" required>
                       </div>
 
                       <div class="form-group col-md-4">
-                        <label for="get_id_unidade_academica">Selecione a Unidade Acadêmica da Ação</label>
-                          <select id="get_id_unidade_academica" name="get_id_unidade_academica" class="custom-select">
-                            <option value="0"></option>
-                            <?
-                            // traz a lista das unidades acadêmicas
-                            $selectUnidadeAcademica = selectUnidadeAcademica();
-                            while($lsselectUnidadeAcademica = mysqli_fetch_object($selectUnidadeAcademica)):
-                            ?>
-                              <option value="<?= $lsselectUnidadeAcademica->unidadeAcademicaID  ?>"><?= $lsselectUnidadeAcademica->nome_UA ?></option>
-                            <? endwhile; ?>
-                          </select>
+                        <label for="cpf">CPF</label>
+                        <input type="text" class="cpf form-control" id="cpf" name="cpf" placeholder="">
                       </div>
+                    </div>
 
-                      <!-- FALTA PEDIR COORDENADOR DA ACAO -->
-                      <!-- FALTA PEDIR ALUNOS CONTRIBUINTES DA ACAO -->
+                    <div class="append"></div>
 
-                      <div class="form-group col-md-4">
-                        <label for="get_id_tipo">Perfil</label>                    
-                          <select id="get_id_tipo" name="get_id_tipo" class="custom-select">
-                            <option value="0"></option>
-                            <option value="1">Administrador</option>
-                            <option value="2">Usuário Comum</option>
-                          </select>
-                      </div>
+                    <button id="botaoAdd" type="button" class="btn">
+                      <i class="fa-solid fa-user-plus fa-lg" style="color:#4e73df" aria-hidden="true"></i>
+                    </button>
 
-                      <div class="form-group col-md-4">
-                            <label for="login">SIAPE</label>
-                            <input type="text" class="form-control" id="matricula" name="matricula" placeholder="" required>
-                      </div>
-                      <div class="form-group col-md-4">
-                            <label for="login">CPF</label>
-                            <input type="text" class="cpf form-control" id="cpf" name="cpf" placeholder="" required>
-                      </div>
-                    </div>                  
-
-                    <button type="submit" class="btn btn-primary">Cadastrar novo Usuário</button>
-                  </form>
-
+                    <button id="remove" type="button" class="btn">
+                      <i class="fa-solid fa-user-minus fa-lg" style="color:#e74a3b" aria-hidden="true"></i>
+                    </button>
+                    
                   </div>
                 </div>
+                  
+                  <button type="submit" class="btn btn-primary">Cadastrar nova Ação</button>
+                  </form>
+                </div>
+              </div>
             </div>
+          </div>
+        </div>
+
+
+
+
+
+                      <!-- FALTA PEDIR ALUNOS CONTRIBUINTES DA ACAO -->
+
+
+
+                      
+                      
 
             <!-- DataTales Example -->
             <div class="card shadow mb-4">
               <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary"><?= totalProfiles() ?> Usuários Cadastrados</h6>
-                <h6 class="m-0 text-primary"><small><?= totalProfilesByType(1) ?> Administrador(es)</small></h6>
-                <h6 class="m-0 text-primary"><small><?= totalProfilesByType(2) ?> Usuário Final</small></h6>
+                <h6 class="m-0 font-weight-bold text-primary"><?= totalAcoes() ?> Ações Cadastradas</h6>
 
               </div>
               <div class="card-body">
@@ -113,47 +177,30 @@ permissao('acoes');
                     <thead>
                       <tr>
                         <th>Id</th>
-                        <th>Nome</th>
-                        <th>Email</th>
-                        <th>Unidade Acadêmica</th>
-                        <th>SIAPE</th>
+                        <th>Titulo</th>
                         <th>Tipo</th>
-                        <th>Status</th>
+                        <th>Área Temática</th>
+                        <th>Unidade Acadêmica</th>
+                        <th>Coordenador</th>
+                        <th>Quantidade de Alunos</th>
                       </tr>
                     </thead>
                     <tbody id="table-body">
                     <?
-                    $selectProfiles = selectProfiles();
-                    while($lsSelectProfiles = mysqli_fetch_object($selectProfiles)):
-                      switch ($lsSelectProfiles->tipoUsuario) {
-                        case '0':
-                          $tipo = 'Usuário Comum';
+                    $selectAcoes = selectAcoes();
+                    while($lsSelectProfiles = mysqli_fetch_object($selectAcoes)):
+                      switch ($lsSelectProfiles->membroEquipe) {
+                        case '2':
+                          $tipo = 'Técnico Administrativo';
                           break;
                         case '1':
-                          $tipo = 'Administrador';
+                          $tipo = 'Docente';
                           break;
-                      }
-                      //TRATA O LABEL DO STATUS
-                      switch ($lsSelectProfiles->statusUsuario) {
-                        case '0':
-                          $statusDeAcesso = 'Inativo';
-                          break;
-                        case '1':
-                          $statusDeAcesso = 'Ativo';
-                          break;
-                      }                      
+                      }                 
                     ?>
                         <tr>
-                            <td><small><?= $lsSelectProfiles->usuarioID ?> </small></td>
-                            <td><small>
-
-                      <? // TESTANDO SE O USER LOGADO É SINGLE. SINGLE NÃO TEM BTN-SUBMIT
-                        if(($_SESSION['usuarioTipo'] == 1) and ($_SESSION['usuarioID'] != $lsSelectProfiles->usuarioID)):?>
-                          <?= $lsSelectProfiles->nomeUsuario?>
-                        <? else: ?>
-                        <a href="?page=profileEditDoAdmin&asdf=<?= base64_encode($lsSelectProfiles->usuarioID) ?>"><?= $lsSelectProfiles->nomeUsuario ?></a>
-                        <a href="?page=profileEditDoAdmin&asdf=<?= base64_encode($lsSelectProfiles->usuarioID); ?>" type="submit" class="btn btn-success btn-sm btn-flat"><i class="fa fa-edit"></i> Edit Profile</a>
-                        <? endif ?>
+                            <td><small><?= $lsSelectProfiles->acaoID ?> </small></td>
+                            <td><?= $lsSelectProfiles->tituloAcao ?><small></td>
 
                               <br>
                             <span class="text-gray-500">registrado em: <? $dataRegistro = new DateTime($lsSelectProfiles->dataRegistroUsuario); echo $dataRegistro->format('d/m/Y H:i'); ?></span></small></td>
