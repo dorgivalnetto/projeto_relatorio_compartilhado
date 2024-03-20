@@ -87,15 +87,15 @@ INSERT INTO `alunos` (`alunoID`, `nomeAluno`, `matriculaAluno`, `cpfAluno`) VALU
 SELECT * from `alunoContribuinte`;
 INSERT INTO `alunoContribuinte` (`alunoContribuinteID`, `acoes_AC_ID`, `usuario_AC_ID`, `bolsista`) VALUES
 (1, 1, 1, 1),
-(2, 1, 1, 0),
-(3, 2, 4, 0),
+(2, 1, 2, 0),
+(3, 2, 3, 0),
 (4, 2, 4, 1),
-(5, 3, 3, 0),
-(6, 3, 3, 0),
-(7, 4, 2, 1),
-(8, 4, 2, 1),
-(9, 5, 5, 0),
-(10, 5, 5, 1);
+(5, 3, 5, 0),
+(6, 3, 6, 0),
+(7, 4, 7, 1),
+(8, 4, 8, 1),
+(9, 5, 9, 0),
+(10, 5, 10, 1);
 
 -- FALTA FAZER INSERTS DA MEMBROEQUIPE E MAIS USUARIOS
 
