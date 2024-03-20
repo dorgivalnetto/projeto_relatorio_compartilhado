@@ -201,37 +201,14 @@ permissao('acoes');
                         <tr>
                             <td><small><?= $lsSelectProfiles->acaoID ?> </small></td>
                             <td><?= $lsSelectProfiles->tituloAcao ?><small></td>
-
-                              <br>
-                            <span class="text-gray-500">registrado em: <? $dataRegistro = new DateTime($lsSelectProfiles->dataRegistroUsuario); echo $dataRegistro->format('d/m/Y H:i'); ?></span></small></td>
-                            <td><small><?= $lsSelectProfiles->loginUsuario ?></small></td>
+                            <td><small><?= $lsSelectProfiles->tipoAcao ?></small></td>
+                            <td><small><?= $lsSelectProfiles->areaTematicaAcao ?></small></td>
                             <td><small><?= whichUnidadeAcademica($lsSelectProfiles->unidadeAcademicaUsuario) ?></small></td>
-                            <td><small><?= $lsSelectProfiles->siapeUsuario ?></small></td>
                             <td>
-                              <span class="badge badge-<?= $lsSelectProfiles->tipoUsuario == 1 ? 'success' : 'danger'; ?>"><?= $tipo ?></span>
-                              <span class="badge badge-<?= $lsSelectProfiles->statusUsuario == 0 ? 'warning' : 'info'; ?>"><?= $statusDeAcesso ?></span>
+                              <?= $lsSelectProfiles->nomeUsuario ?>
+                              <span class="badge badge-<?= $lsSelectProfiles->tipo == 2 ? 'warning' : 'info'; ?>"><?= $tipo ?></span>
                             </td>
-                            <td>
-
-                            <!--
-                                STTAUS 0(ZERO) O USER ESTÁ DESATIVADO.
-                                STATUS 1 ESTÁ ATIVO PARA ACESSO AO SISTEMA
-                            -->
-                            <?php if ($lsSelectProfiles->statusUsuario == 0):?>
-                            <form method="post" action="controller/updateUsuarioStatus.php" enctype="multipart/form-data">
-                                <input type="hidden" id="id_usu" name="id_usu" value="<?= $lsSelectProfiles->usuarioID?>">
-                                <input type="hidden" id="status" name="status" value="1">
-                                <button type="submit" class="btn btn-info btn-sm"><small>Ativar</small></button>
-                            </form>
-                            <?php else: ?>
-                            <form method="post" action="controller/updateUsuarioStatus.php" enctype="multipart/form-data">
-                                <input type="hidden" id="id_usu" name="id_usu" value="<?= $lsSelectProfiles->usuarioID?>">
-                                <input type="hidden" id="status" name="status" value="0">
-                                <button type="submit" class="btn btn-sm btn-warning"><small>Desativar</small></button>
-                            </form>
-                            <?php endif; ?>
-                              
-                            </td>
+                            <td><?= totalAlunosDaAcao($lsSelectProfiles->acaoID) ?></td>
                         </tr>
                     <? endwhile ?>   
                     </tbody>

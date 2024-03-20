@@ -30,10 +30,19 @@ function totalAcoes(){
 function selectAcoes(){
     $query = mysqli_query($_SESSION['link'],"SELECT * FROM acoes
                 INNER JOIN membroEquipe ON (membroEquipe.acao_ME_ID = acoes.acaoID)
+                    INNER JOIN usuarios ON (usuarios.usuarioID = membroEquipe.usuario_ME_ID)
                 INNER JOIN alunoContribuinte ON (alunoContribuinte.acoes_AC_ID = acoes.acaoID)
                     INNER JOIN alunos ON (alunos.alunoID = alunoContribuinte.usuario_AC_ID);
         ") or die(mysql_error());
     return $query;
+}
+
+function totalAlunosDaAcao($idAcao) {
+    global $link;
+    $query = mysqli_query($link, "SELECT * FROM alunoContribuinte 
+                WHERE acoes_AC_ID = $idAcao") or die(mysqli_error($link));
+    $row = mysqli_num_rows($query);
+    return $row;
 }
 
 // LISTA AS UNIDADES ACADÊMICAS
