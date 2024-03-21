@@ -168,7 +168,7 @@ permissao('acoes');
             <!-- DataTales Example -->
             <div class="card shadow mb-4">
               <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary"><?= totalAcoes() ?> Alunos Cadastrados</h6>
+                <h6 class="m-0 font-weight-bold text-primary"><?= totalAlunos() ?> Alunos Cadastrados</h6>
 
               </div>
               <div class="card-body">
@@ -176,13 +176,14 @@ permissao('acoes');
                   <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                       <tr>
-                        <th>Id</th>
+                        <th>Id do Aluno</th>
                         <th>Nome do Aluno</th>
-                        <th>Tipo</th>
-                        <th>Área Temática</th>
-                        <th>Unidade Acadêmica</th>
-                        <th>Coordenador</th>
+                        <th>Id da Ação</th>
                         <th>Título da Ação</th>
+                        <th>Coordenador</th>
+                        <th>Tipo</th>
+                        <th>Unidade Acadêmica</th>
+                        <th>Área Temática</th>
                       </tr>
                     </thead>
                     <tbody id="table-body">
@@ -199,16 +200,17 @@ permissao('acoes');
                       }                 
                     ?>
                         <tr>
-                            <td><small><?= $lsSelectProfiles->acaoID ?> </small></td>
+                            <td><small><?= $lsSelectProfiles->alunoID ?> </small></td>
                             <td><?= $lsSelectProfiles->nomeAluno ?></td>
-                            <td><small><?= $lsSelectProfiles->tipoAcao ?></small></td>
-                            <td><small><?= $lsSelectProfiles->areaTematicaAcao ?></small></td>
-                            <td><small><?= whichUnidadeAcademica($lsSelectProfiles->unidadeAcademicaUsuario) ?></small></td>
+                            <td><small><?= $lsSelectProfiles->acaoID ?> </small></td>
+                            <td><?= $lsSelectProfiles->tituloAcao ?><small></td>
                             <td>
                               <?= $lsSelectProfiles->nomeUsuario ?>
                               <span class="badge badge-<?= $lsSelectProfiles->tipo == 2 ? 'warning' : 'info'; ?>"><?= $tipo ?></span>
                             </td>
-                            <td><?= $lsSelectProfiles->tituloAcao ?><small></td>
+                            <td><small><?= $lsSelectProfiles->nome_Tipo ?></small></td>
+                            <td><small><?= whichUnidadeAcademica($lsSelectProfiles->unidadeAcademicaUsuario) ?></small></td>
+                            <td><small><?= $lsSelectProfiles->nome_Area ?></small></td>
                         </tr>
                     <? endwhile ?>   
                     </tbody>

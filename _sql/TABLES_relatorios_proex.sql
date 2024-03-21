@@ -153,3 +153,33 @@ CREATE TABLE IF NOT EXISTS `permissoes` (
   `usuarios` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`idPermissao`)
 ) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
+
+--
+-- Estrutura para tabela `formularios`
+--
+
+CREATE TABLE IF NOT EXISTS `formularios` (
+  `formularioID` int(11) NOT NULL AUTO_INCREMENT,
+  `tituloAcaoForm` tinytext NOT NULL,
+  `tipoAcaoForm` tinytext NOT NULL,
+  `modalidadeAcaoForm` tinytext NOT NULL,
+  `unidadeAcademicaAcaoForm` tinytext NOT NULL,
+  `areaTematicaAcaoForm` tinytext NOT NULL,
+  `nomeUsuarioForm` tinytext NOT NULL,
+  `tipoMembroForm` tinytext NOT NULL,
+  `siapeUsuarioForm` tinytext NOT NULL,
+  `atividadesRealizadasForm` tinytext NOT NULL,
+  `locaisAtividadesForm` tinytext NOT NULL,
+  `publicoInternoForm` int(11) NOT NULL,
+  `publicoExternoForm` int(11) NOT NULL,
+  `avancosForm` tinytext NOT NULL,
+  `acoesVinculadasForm` tinytext NOT NULL,
+  `publicaForm` int(11) NOT NULL,
+  `internacionalForm` tinytext NOT NULL,
+  `tecnologiaSocialForm` tinytext NOT NULL,
+  `redesSociaisForm` tinytext NOT NULL,
+  `avaliacaoForm` tinytext NOT NULL,
+  `linkFotosForm` tinytext NOT NULL,
+  `descricaoFotosForm` tinytext NOT NULL,
+  PRIMARY KEY (`formularioID`)
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;

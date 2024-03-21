@@ -27,12 +27,21 @@ function totalAcoes(){
     return $row;
 }
 
+function totalAlunos(){
+    global $link;
+    $query = mysqli_query($link ,"SELECT * FROM `alunos`") or die(mysql_error());
+    $row = mysqli_num_rows($query);
+    return $row;
+}
+
 function selectAcoes(){
     $query = mysqli_query($_SESSION['link'],"SELECT * FROM acoes
                 INNER JOIN membroEquipe ON (membroEquipe.acao_ME_ID = acoes.acaoID)
                 INNER JOIN usuarios ON (usuarios.usuarioID = membroEquipe.usuario_ME_ID)
                 INNER JOIN alunoContribuinte ON (alunoContribuinte.acoes_AC_ID = acoes.acaoID)
                 INNER JOIN alunos ON (alunos.alunoID = alunoContribuinte.usuario_AC_ID)
+                INNER JOIN tipoAcao ON (tipoAcao.tipoAcaoID = acoes.tipoAcao)
+                INNER JOIN tipoArea ON (tipoArea.tipoAreaID = acoes.areaTematicaAcao)
         ") or die(mysql_error());
     return $query;
 }
@@ -43,6 +52,8 @@ function selectAcaoPeloCoordenador($coordenadorID){
                 INNER JOIN membroEquipe ON (membroEquipe.acao_ME_ID = acoes.acaoID)
                 INNER JOIN usuarios ON (usuarios.usuarioID = membroEquipe.usuario_ME_ID)
                 INNER JOIN tipoAcao ON (tipoAcao.tipoAcaoID = acoes.tipoAcao)
+                INNER JOIN unidadeAcademica ON (unidadeAcademica.unidadeAcademicaID = acoes.unidadeAcademicaAcao)
+                INNER JOIN tipoArea ON (tipoArea.tipoAreaID = acoes.areaTematicaAcao)
                 INNER JOIN tipoMembro ON (tipoMembro.tipoMembroID = membroEquipe.tipoMembro)
     WHERE usuarioID = $coordenadorID") or die(mysql_error());
     $query = mysqli_fetch_object($query);

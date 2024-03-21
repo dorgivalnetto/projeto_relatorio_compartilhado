@@ -8,7 +8,7 @@ permissao('relatoriofinal');
 
     <!-- Page Heading -->
     <h1 class="h3 mb-2 text-gray-800">Relatório Final</h1>
-    <p class="mb-4">Preencha o Relatório Final da ação X.</p>
+    <p class="mb-4">Preencha o Relatório Final da ação <b><?= selectAcaoPeloCoordenador($_SESSION['usuarioID'])->tituloAcao ?></b>.</p>
 
 
     <!-- SOBRE A AÇÃO -->
@@ -36,7 +36,12 @@ permissao('relatoriofinal');
                         <label for="modalidadeAcao">Modalidade da Ação</label>
                         <input type="text" class="form-control" id="modalidadeAcao" name="modalidadeAcao" placeholder="Fluxo Contínuo" disabled>
                     </div>
-                </div>                  
+                </div>
+                <input type="hidden" class="form-control" id="nomeAcao" name="nomeAcao" value="<?= selectAcaoPeloCoordenador($_SESSION['usuarioID'])->tituloAcao ?>">
+                <input type="hidden" class="form-control" id="tipoAcao" name="tipoAcao" value="<?= selectAcaoPeloCoordenador($_SESSION['usuarioID'])->nome_Tipo ?>">
+                <input type="hidden" class="form-control" id="modalidadeAcao" name="modalidadeAcao" value="Fluxo Contínuo">
+                <input type="hidden" class="form-control" id="unidadeAcademicaAcao" name="unidadeAcademicaAcao" value="<?= selectAcaoPeloCoordenador($_SESSION['usuarioID'])->nome_UA ?>">
+                <input type="hidden" class="form-control" id="areaTematicaAcao" name="areaTematicaAcao" value="<?= selectAcaoPeloCoordenador($_SESSION['usuarioID'])->nome_Area ?>">
             </div>
         </div>
     </div>
@@ -67,7 +72,10 @@ permissao('relatoriofinal');
                         <input type="text" class="form-control" id="siapeCoordenador" name="siapeCoordenador" placeholder="<?= selectAcaoPeloCoordenador($_SESSION['usuarioID'])->siapeUsuario ?>" disabled>
                     </div>
 
-                </div>                  
+                </div>     
+                <input type="hidden" class="form-control" id="nomeCoordenador" name="nomeCoordenador" value="<?= selectAcaoPeloCoordenador($_SESSION['usuarioID'])->nomeUsuario ?>">
+                <input type="hidden" class="form-control" id="tipoMembro" name="tipoMembro" value="<?= selectAcaoPeloCoordenador($_SESSION['usuarioID'])->nomeTipo ?>">
+                <input type="hidden" class="form-control" id="siapeCoordenador" name="siapeCoordenador" value="<?= selectAcaoPeloCoordenador($_SESSION['usuarioID'])->siapeUsuario ?>">
             </div>
         </div>
     </div>
@@ -176,7 +184,7 @@ permissao('relatoriofinal');
                         </div>
 
                         <div class="form-group col-md-4">
-                            <label for="escPublica">Perfil</label>                    
+                            <label for="escPublica">A Ação é voltada para escolas <b>públicas</b>?</label>                    
                             <select id="escPublica" name="escPublica" class="custom-select">
                             <option value="0"></option>
                             <option value="1">Sim</option>
@@ -254,8 +262,8 @@ permissao('relatoriofinal');
                     </div>
 
                     <div class="form-group">
-                        <label for="avaliacaoMonitoramento">Com relação às imagens submetidas na pergunta anterior, informe aqui as legendas de cada um informando local, data e descrição da atividade.</label>
-                        <textarea class="form-control" id="avaliacaoMonitoramento" rows="4" name="avaliacaoMonitoramento" placeholder="Foto 1 - Participação no evento X no Colégio Y do município Z. XX/XX/202X" required></textarea>
+                        <label for="descricaoFotos">Com relação às imagens submetidas na pergunta anterior, informe aqui as legendas de cada um informando local, data e descrição da atividade.</label>
+                        <textarea class="form-control" id="descricaoFotos" rows="4" name="descricaoFotos" placeholder="Foto 1 - Participação no evento X no Colégio Y do município Z. XX/XX/202X" required></textarea>
                     </div>
 
                 </div>                  
